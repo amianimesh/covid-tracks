@@ -16,7 +16,7 @@ function CaseContainer({datas, fetchData}) {
             <div>
                 {/*datas && datas.cases && datas.cases.map(item => <p>{item.dateAnnounced}</p>)*/}
             </div>
-        </div>
+        </div> 
     )
 }
 

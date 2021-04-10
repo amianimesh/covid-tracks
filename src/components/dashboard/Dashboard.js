@@ -5,6 +5,15 @@ import  CaseContainer  from './CaseData'
 
 
 class Dashboard extends Component {
+    getDaysInMonth = () => {
+        var currentDate = new Date();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        var daysInMonth = new Date(year, month, 0).getDate();
+        return daysInMonth;
+    }
+
+
     MonthToDateActiveCases = () => {
         let currentDate = new Date();
         let experiment = this.props.datas.cases.filter((element) => {return element.dateAnnounced.getMonth() === currentDate.getMonth()}).length
@@ -17,8 +26,14 @@ class Dashboard extends Component {
         return lastmonthcases;
     }
 
-    EstimatedMonthEndCases = () => {
+    estimatedMonthEndCases = () => {
         let x = this.MonthToDateActiveCases();
+        let y = this.getDaysInMonth();
+        let currentDate = new Date();
+        let dateNumber = currentDate.getDate();
+        let estimatedPatient = (x/dateNumber) * y;
+        return estimatedPatient;
+        
     }
 
 
@@ -88,7 +103,7 @@ class Dashboard extends Component {
                         <div className='card'>
                             <div className='card-content black-text'>
                                 <span className='card-title indigo-text' style={{fontWeight: "bold"}}>Estimated Month End Active Cases</span>
-                                <p>$100</p>
+                                <p>{this.estimatedMonthEndCases()}</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +114,7 @@ class Dashboard extends Component {
                     </div>
                     <div className='col s12 l12'>
                         <div className='card'>
-                            <CaseContainer/>
+                         <CaseContainer/>
                         </div>
                     </div>
                 </div>
