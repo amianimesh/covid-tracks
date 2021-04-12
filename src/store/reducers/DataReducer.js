@@ -1,4 +1,4 @@
-import { FETCH_DATA_ERROR, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS } from "../action/actionTypes";
+import { FETCH_DATA_ERROR, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_BY_GENDER } from "../action/actionTypes";
 
 const initState = {
     loading: false,
@@ -26,6 +26,7 @@ const dataReducer = (state= initState, action) => {
                 cases: [],
                 error: action.payload
             }
+
         default:
             return state
     }

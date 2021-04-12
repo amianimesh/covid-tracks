@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import  CaseContainer  from './CaseData'
 
 
+
 class Dashboard extends Component {
     getDaysInMonth = () => {
         var currentDate = new Date();
@@ -35,9 +36,23 @@ class Dashboard extends Component {
         return estimatedPatient;
         
     }
+    onClickGenderChange = (e) => {
+        let getGender = e.target.value;
+        console.log(getGender);
+        let dodo = this.props.datas.cases.filter((patient) => {return patient.gender === getGender})
+        console.log(dodo);
+    }
+
+    onClickStatus = (e) => {
+        let getStatus = e.target.value;
+        console.log(getStatus);
+        let covidpatient = this.props.datas.cases.filter((patient) => {return patient.currentStatus === getStatus})
+        console.log(covidpatient);
+    }
 
 
-    render(){
+
+    render(){ 
         return(
             <div>
                 <div className='row'>
@@ -45,18 +60,17 @@ class Dashboard extends Component {
                         <div className='card' style={{height: "100px"}}>
                             <div className='card-content'>
                             
-                                <label className='left' style={{marginRight: '25px', marginTop: '10px'}}>Filter:</label>
+                                <label className='left black-text' style={{marginRight: '25px', marginTop: '10px'}}>Filter:</label>
                                 <select class="browser-default col s12 m3 " style={{width: "120px", height: "35px", marginRight:'20px'}} >
                                 <option value="" disabled selected>Location</option>
                                 <option value="1">example 1</option>
                                 <option value="2" >example 2</option>
                                 <option value="3" >example 3</option>
                                 </select>
-                                <select class="browser-default col s12 m3 "  style={{width: "120px", height: "35px", marginRight:'20px'}}>
+                                <select onChange = {this.onClickGenderChange}  class="browser-default col s12 m3 "  style={{width: "120px", height: "35px", marginRight:'20px'}}>
                                 <option value="" disabled selected>Gender</option>
-                                <option value="1">example 1</option>
-                                <option value="2" >example 2</option>
-                                <option value="3" >example 3</option>
+                                <option value="m" >Male</option>
+                                <option value="f" >Female</option>
                                 </select>
                                 <select class="browser-default col s12 m3 "  style={{width: "120px", height: "35px", marginRight:'20px'}}>
                                 <option value="" disabled selected>Age</option>
@@ -64,11 +78,12 @@ class Dashboard extends Component {
                                 <option value="2" >example 2</option>
                                 <option value="3" >example 3</option>
                                 </select>
-                                <select class="browser-default col s12 m3 "  style={{width: "120px", height: "35px"}}>
+                                <select onChange = {this.onClickStatus}  class="browser-default col s12 m3 "  style={{width: "120px", height: "35px"}}>
                                 <option value="" disabled selected>Status</option>
-                                <option value="1">example 1</option>
-                                <option value="2" >example 2</option>
-                                <option value="3" >example 3</option>
+                                <option value="active">Active</option>
+                                <option value="recovered" >Recovered</option>
+                                <option value="deceased" >Deceased</option>
+                                <option value="hospitalized" >Hospitalized</option>
                                 </select>
                                 <form className='right col s12 m3' style={{width: "230px", height: "50px"}}>
                                 <label>To</label>
@@ -84,7 +99,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div class='col s12 l4'>
-                        <div className='card'>
+                        <div className='card' >
                             <div className='card-content black-text'>
                                 <span className='card-title indigo-text'  style={{fontWeight: "bold"}}>Month To Date Active Cases</span>
                                 <p>{this.MonthToDateActiveCases()}</p>

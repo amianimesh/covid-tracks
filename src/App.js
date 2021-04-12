@@ -8,7 +8,7 @@ class App extends Component {
   render(){
     return (
       <BrowserRouter>
-        <div className="App"  style={{background: 'linear-gradient(to right, lightblue , pink)'}}>
+        <div className="App">
           <Dashboard/>
         </div>
       </BrowserRouter>

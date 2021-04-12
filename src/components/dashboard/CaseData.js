@@ -10,11 +10,12 @@ function CaseContainer({datas, fetchData}) {
         <h2>Loading</h2>
     ): datas.error ? (
         <h2>{datas.error}</h2>
-    ): (
+    )
+    : (
         <div>
             <h2>User List</h2>
             <div>
-                {/*datas && datas.cases && datas.cases.map(item => <p>{item.dateAnnounced}</p>)*/}
+                {datas && datas.cases && datas.cases.map(item => <p>{item.currentStatus}</p>)}
             </div>
         </div> 
     )
