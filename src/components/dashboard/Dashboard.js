@@ -6,6 +6,21 @@ import  CaseContainer  from './CaseData'
 
 
 class Dashboard extends Component {
+    state = {
+        cases: []
+    }
+    
+
+    testing = (e) => {
+        let b = e.target.value
+        console.log(b);
+        let a = this.props.datas.cases;
+        console.log(a);
+        this.setState({cases : a });
+        console.log(this.state);  
+    }
+
+
     getDaysInMonth = () => {
         var currentDate = new Date();
         var month = currentDate.getMonth() + 1;
@@ -32,24 +47,25 @@ class Dashboard extends Component {
         let y = this.getDaysInMonth();
         let currentDate = new Date();
         let dateNumber = currentDate.getDate();
-        let estimatedPatient = (x/dateNumber) * y;
+        let estimatedPatient = Math.round((x/dateNumber) * y);
         return estimatedPatient;
         
     }
     onClickGenderChange = (e) => {
         let getGender = e.target.value;
-        console.log(getGender);
-        let dodo = this.props.datas.cases.filter((patient) => {return patient.gender === getGender})
+        //console.log(getGender);
+        let dodo = this.state.cases.filter((patient) => {return patient.gender === getGender})
         console.log(dodo);
+        this.setState({cases: dodo})
+        
     }
 
     onClickStatus = (e) => {
         let getStatus = e.target.value;
-        console.log(getStatus);
-        let covidpatient = this.props.datas.cases.filter((patient) => {return patient.currentStatus === getStatus})
+        //console.log(getStatus);
+        let covidpatient = this.state.cases.filter((patient) => {return patient.currentStatus === getStatus})
         console.log(covidpatient);
     }
-
 
 
     render(){ 
@@ -57,11 +73,11 @@ class Dashboard extends Component {
             <div>
                 <div className='row'>
                     <div class='col s12 l12'>
-                        <div className='card' style={{height: "100px"}}>
+                        <div className='card grey lighten-4' style={{height: "100px"}}>
                             <div className='card-content'>
                             
                                 <label className='left black-text' style={{marginRight: '25px', marginTop: '10px'}}>Filter:</label>
-                                <select class="browser-default col s12 m3 " style={{width: "120px", height: "35px", marginRight:'20px'}} >
+                                <select onChange={this.testing} class="browser-default col s12 m3 " style={{width: "120px", height: "35px", marginRight:'20px'}} >
                                 <option value="" disabled selected>Location</option>
                                 <option value="1">example 1</option>
                                 <option value="2" >example 2</option>
@@ -99,7 +115,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div class='col s12 l4'>
-                        <div className='card' >
+                        <div className='card z-depth-2 yellow lighten-5' >
                             <div className='card-content black-text'>
                                 <span className='card-title indigo-text'  style={{fontWeight: "bold"}}>Month To Date Active Cases</span>
                                 <p>{this.MonthToDateActiveCases()}</p>
@@ -107,7 +123,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div class='col s12 l4'>
-                        <div className='card'>
+                        <div className='card z-depth-2 yellow lighten-5'>
                             <div className='card-content black-text'>
                                 <span className='card-title indigo-text' style={{fontWeight: "bold"}}>Last Month Active Cases</span>
                                 <p>{this.LastMonthActiveCases()}</p>
@@ -115,7 +131,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div class='col s12 l4'>
-                        <div className='card'>
+                        <div className='card z-depth-2 yellow lighten-5'>
                             <div className='card-content black-text'>
                                 <span className='card-title indigo-text' style={{fontWeight: "bold"}}>Estimated Month End Active Cases</span>
                                 <p>{this.estimatedMonthEndCases()}</p>
@@ -123,7 +139,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div className='col s12 l12'>
-                        <div className='card'>
+                        <div className='card z-depth-3 green lighten-5'>
                             <BarChart/>
                         </div>
                     </div>

@@ -82,8 +82,8 @@ class BarChart extends Component {
                             backgroundColor:['#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58','#ffee58']
                         }] 
                     }}
-                    weidth={800}
-                    height={400}
+                    weidth={450}
+                    height={450}
                     options={{
                         maintainAspectRatio: false,
                         title: {

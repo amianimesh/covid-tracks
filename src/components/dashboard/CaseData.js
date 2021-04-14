@@ -15,7 +15,7 @@ function CaseContainer({datas, fetchData}) {
         <div>
             <h2>User List</h2>
             <div>
-                {datas && datas.cases && datas.cases.map(item => <p>{item.currentStatus}</p>)}
+                {/*datas && datas.cases && datas.cases.map(item => <p>{item.currentStatus}</p>)*/}
             </div>
         </div> 
     )
